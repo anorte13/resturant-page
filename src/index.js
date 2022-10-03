@@ -1,6 +1,4 @@
 //main function
-import { landingPage } from './pages/home';
+import { loadPage } from "./pages/website";
 
-landingPage();
-
-
+loadPage();
