@@ -3,13 +3,11 @@ import { aboutPage } from "./about.js";
 import { menu } from "./menu.js";
 import '../styles/home.css';
 
-let mainBodyNode;
-
+const content = document.getElementById('content');
 function headerPage() {
     
-    const content = document.getElementById('content');
-
     const head = document.createElement('div');
+    head.id = 'header';
     content.appendChild(head);
     head.classList.add('container');
 
@@ -27,41 +25,56 @@ function headerPage() {
     subheader.appendChild(list);
     
     const a = document.createElement('button');
+    a.id = 'menu-buttons';
     a.textContent = 'About'
     a.addEventListener('click' , function() {
-        mainBody(aboutPage);
+        body.remove();
+        footer.remove();
+        mainBody();
+        aboutPage();
+        footerPage();
         return;
     })
     list.appendChild(a);
 
     const b = document.createElement('button');
+    b.id = 'menu-buttons';
     b.textContent = 'Home'
     b.addEventListener('click', function() {
-        mainBody(homeBody);
+        body.remove();
+        footer.remove();
+        mainBody();
+        homeBody();
+        footerPage();
         return;
     })
     list.appendChild(b);
 
     const c = document.createElement('button');
+    c.id = 'menu-buttons';
     c.textContent = 'Menu'
     c.addEventListener('click', function(){
-        mainBody(menu);
+        body.remove();
+        footer.remove();
+        mainBody();
+        menu();
+        footerPage();
         return;
     })
     list.appendChild(c);
-}
-function mainBody(func) {
+    }
+
+    function mainBody() {
     const body = document.createElement('div');
-    body.id = 'body';
+    body.id = 'body';   
     content.appendChild(body);
-    mainBodyNode = body;
-    func();
-}
-function footerPage() {
+    }
+
+    function footerPage() {
     const footer = document.createElement('div');
     footer.id = 'footer';
-    body.appendChild(footer);
-
+    content.appendChild(footer);
+    
     const footerContainer = document.createElement('div');
     footerContainer.id = 'footer-container';
     footer.appendChild(footerContainer);
@@ -80,5 +93,6 @@ function footerPage() {
 export function loadPage() {
     headerPage();
     mainBody();
+    homeBody();
     footerPage();
 }
